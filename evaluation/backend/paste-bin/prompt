@@ -1,0 +1,5 @@
+create this backend application in Node.js or Flask
+
+
+Let's design a Pastebin like web service, where users can store plain text. 
+Users of the service will enter a piece of text and get a randomly generated URL to access it

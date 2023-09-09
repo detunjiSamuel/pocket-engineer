@@ -1,0 +1,12 @@
+create a full-stack application using HTML, CSS, and JavaScript; your backend can be implemented in either Node.js or Python Flask
+
+Surveys are a valuable part of any developers toolbox. They are useful for getting feedback from your users on a variety of topics including application satisfaction, requirements, upcoming needs, issues, priorities, and just plain aggravations to name a few.
+
+It provides the ability to define a survey, allow users to respond within a predefined timeframe, and tabulate and present results
+
+
+should be able create survey
+should be able delete survey that has be created
+should be able to view survey result
+should be able to repond to survey that has been created
+

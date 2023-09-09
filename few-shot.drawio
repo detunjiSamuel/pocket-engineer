@@ -1,0 +1,28 @@
+<mxfile host="app.diagrams.net" modified="2023-09-06T05:38:46.626Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="xwevrZ-rvdmLNSfKsDSs" version="21.7.2" type="device">
+  <diagram name="Page-1" id="7B9QI_Cc4mUoK9Tq_LHO">
+    <mxGraphModel dx="1022" dy="442" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="gHLMkHLXIzN0wpKPHqu1-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gHLMkHLXIzN0wpKPHqu1-6" target="gHLMkHLXIzN0wpKPHqu1-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gHLMkHLXIzN0wpKPHqu1-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="200" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gHLMkHLXIzN0wpKPHqu1-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gHLMkHLXIzN0wpKPHqu1-7" target="gHLMkHLXIzN0wpKPHqu1-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gHLMkHLXIzN0wpKPHqu1-7" value="LANGUAGE MODEL" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="200" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gHLMkHLXIzN0wpKPHqu1-8" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="200" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gHLMkHLXIzN0wpKPHqu1-12" value="&lt;b&gt;OUTPUT&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="515" y="170" width="70" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

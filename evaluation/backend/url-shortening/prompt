@@ -1,0 +1,3 @@
+create this backend application in Node.js or Flask
+
+develop URL shortening service like TinyURL. This service will provide short aliases redirecting to long URLs.
