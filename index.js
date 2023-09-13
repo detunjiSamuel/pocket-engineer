@@ -1,34 +1,36 @@
 require("dotenv").config();
 
 const path = require("path");
+const fs = require("fs");
 
-const { workItem, workPlace, archive } = require("./components/workspace");
+const { workItem, archive } = require("./src/components/workspace");
 
-const Interaction = require("./components/interaction");
+const Interaction = require("./src/components/interaction");
 
-const workflow = require("./components/workflow");
-const { serialize_message } = require("./components/interaction/helper");
-
-basePath = "./data";
+const workflow = require("./src/components/workflow");
+const { serialize_message } = require("./src/components/interaction/helper");
 
 const args = process.argv;
 
 if (args.length != 3) throw new Error("please provide a path for your task");
 
-input = new workItem(path.join(args[2]));
+const basePath = path.join(args[2]);
+
+if (!fs.existsSync(basePath)) {
+  throw new Error(`Path does not exisis: ${basePath}`);
+}
+
+const db = {};
+
+db.preprompts = new workItem(path.join("./src/preprompts"));
+
+db.input = new workItem(basePath);
+db.memory = new workItem(path.join(basePath, "memory"));
+db.logs = new workItem(path.join(basePath, "logs"));
+db.workspace = new workItem(path.join(basePath, "workspace"));
+db.archive = new workItem(path.join(basePath, "archive"));
 
 const ai = new Interaction();
-
-memory = new workItem(path.join(basePath, "memory"));
-logs = new workItem(path.join(basePath, "logs"));
-
-preprompts = new workItem(path.join("./preprompts"));
-
-workspace = new workItem(path.join(basePath, "workspace"));
-
-archive_ = new workItem(path.join(basePath, "archive"));
-
-const db = new workPlace(memory, logs, preprompts, input, workspace, archive_);
 
 archive(db);
 
@@ -46,9 +48,3 @@ archive(db);
     db.logs.set(stepName, serialized);
   }
 })();
-
-// clarify(test, dbs).then((messages) => {
-//   console.log("done");
-
-//   console.log(messages);
-// });
