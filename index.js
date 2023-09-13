@@ -2,12 +2,12 @@ require("dotenv").config();
 
 const path = require("path");
 
-const { workItem, workPlace, archive } = require("./controllers/workspace");
+const { workItem, workPlace, archive } = require("./components/workspace");
 
-const Interaction = require("./controllers/interaction");
+const Interaction = require("./components/interaction");
 
-const workflow = require("./controllers/workflow");
-const { serialize_message } = require("./controllers/interaction/helper");
+const workflow = require("./components/workflow");
+const { serialize_message } = require("./components/interaction/helper");
 
 basePath = "./data";
 
