@@ -1,5 +1,10 @@
 #! /usr/bin/env node
-require("dotenv").config();
+
+try {
+  require("dotenv").config();
+} catch (err) {
+  // dev dependencies not installed i.e was installed
+}
 
 const path = require("path");
 const fs = require("fs");
@@ -15,7 +20,9 @@ const args = process.argv;
 
 if (args.length != 3) throw new Error("please provide a path for your task");
 
-const basePath = path.join(args[2]);
+const userProvidedPath = args[2];
+
+const basePath = path.resolve(process.cwd(), userProvidedPath);
 
 if (!fs.existsSync(basePath)) {
   throw new Error(`Path does not exisis: ${basePath}`);
@@ -23,7 +30,8 @@ if (!fs.existsSync(basePath)) {
 
 const db = {};
 
-db.preprompts = new workItem(path.join("./src/preprompts"));
+db.preprompts = new workItem(path.join( __dirname , "src" , "preprompts"));
+
 
 db.input = new workItem(basePath);
 db.memory = new workItem(path.join(basePath, "memory"));
