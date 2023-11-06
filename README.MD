@@ -1,7 +1,4 @@
 
-
-USE NPM START ${PATH}
-
 # Pocket-Engineer
 
 Specify what you want it to build and then Ai builds it.
@@ -14,16 +11,16 @@ It generates an entire codebase based on a prompt.
 
 ### Stable Release 
 
-``` npm i pocker-engineer -g ```
+```npm i pocker-engineer -g ```
 
 Add ```sudo``` if on a linux or mac
 
 
 ### Development Release
 
- - ``` git clone git@github.com:detunjiSamuel/pocket-engineer.git```
- - ``` cd pocket-engineer```
- - ``` npm i```
+ - ```git clone git@github.com:detunjiSamuel/pocket-engineer.git```
+ - ```cd pocket-engineer```
+ - ```npm i```
 
 
  ### API KEY
@@ -36,7 +33,7 @@ Add ```sudo``` if on a linux or mac
 
 
 
- ### Usage
+ ## Usage
 
  - Step 1 : Create Empty folder
  - Step 2 : Create file callled `prompt` and fill it with instruction on what to build
@@ -44,7 +41,9 @@ Add ```sudo``` if on a linux or mac
  
 
 
- 
+### Example
+
+
 
 
 
