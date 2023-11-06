@@ -1,13 +1,13 @@
 {
   "name": "pocker-engineer",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start" : "node index.js"
   },
-  "keywords": [],
+  "keywords": ["code generation" , "openai" , "gpt" , "llm" , "ai"],
   "author": "",
   "license": "ISC",
   "dependencies": {
