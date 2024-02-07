@@ -81,7 +81,7 @@ async function generateSpecification( ai  , db)
    return messages
 }
 
-const { deserialize_message} =  require('../interaction/helper')
+const { deserialize_message} =  require('../interaction/serialization')
 const {toFiles} = require('./files_chat')
 
 async function generateCode( ai  , db) {

@@ -14,7 +14,7 @@ const { workItem, archive } = require("./src/components/workspace");
 const Interaction = require("./src/components/interaction");
 
 const workflow = require("./src/components/workflow");
-const { serialize_message } = require("./src/components/interaction/helper");
+const { serialize_message } = require("./src/components/interaction/serialization");
 
 const args = process.argv;
 
@@ -53,6 +53,8 @@ archive(db);
     if (!result) continue;
 
     serialized = serialize_message(result);
+
+    break;
 
     db.logs.set(stepName, serialized);
   }
