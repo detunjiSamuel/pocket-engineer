@@ -2,8 +2,6 @@ function parseChat(chat) {
   const regex = /(\S+)\n\s*```\s*[^\n]*\n([\s\S]+?)```/g;
   const matches = [...chat.matchAll(regex)];
 
-  // console.log("matches found" , matches.length )
-
   const files = [];
 
   for (const match of matches) {
@@ -29,14 +27,12 @@ function toFiles(chat, workspace) {
 
   files = parseChat(chat);
 
-  // console.log(files)
 
   console.log(files.length);
 
   for (file of files) {
     // file name , content
 
-    // console.log(file)
     console.log("=====================================");
 
     console.log( "file name : " + file[0])

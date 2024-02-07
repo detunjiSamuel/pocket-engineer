@@ -1,14 +1,7 @@
 
-const { Serialized } = require( "langchain/load/serializable");
 const { SystemMessage, HumanMessage, AIMessage } = require("langchain/schema");
 
 
-// function serialize_message(messages)
-// {
-//  const serializedMessages = messages.map((message) => Serialized.from(message));
-
-//  return JSON.stringify(serializedMessages)
-// }
 
 function serialize_message(messages) {
   const serializedMessages = messages.map((message) => {
