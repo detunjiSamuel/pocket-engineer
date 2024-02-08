@@ -1,61 +1,55 @@
-#! /usr/bin/env node
-
-try {
-  require("dotenv").config();
-} catch (err) {
-  // dev dependencies not installed i.e was installed
-}
+#!/usr/bin/env node
 
 const path = require("path");
 const fs = require("fs");
-
 const { workItem, archive } = require("./src/components/workspace");
-
 const Interaction = require("./src/components/interaction");
+const { code_generation_steps } = require("./src/components/workflow");
+const {
+  serialize_message,
+} = require("./src/components/interaction/serialization");
 
-const workflow = require("./src/components/workflow");
-const { serialize_message } = require("./src/components/interaction/serialization");
+try {
+  const dotenv = require("dotenv");
+  dotenv.config();
+} catch (err) {
+  throw new Error("Error loading env");
+}
 
 const args = process.argv;
 
-if (args.length != 3) throw new Error("please provide a path for your task");
+if (args.length !== 3) {
+  throw new Error("Please provide a path for your task");
+}
 
 const userProvidedPath = args[2];
-
 const basePath = path.resolve(process.cwd(), userProvidedPath);
 
 if (!fs.existsSync(basePath)) {
-  throw new Error(`Path does not exisis: ${basePath}`);
+  throw new Error(`Path does not exist: ${basePath}`);
 }
 
-const db = {};
-
-db.preprompts = new workItem(path.join( __dirname , "src" , "preprompts"));
-
-
-db.input = new workItem(basePath);
-db.memory = new workItem(path.join(basePath, "memory"));
-db.logs = new workItem(path.join(basePath, "logs"));
-db.workspace = new workItem(path.join(basePath, "workspace"));
-db.archive = new workItem(path.join(basePath, "archive"));
+const db = {
+  preprompts: new workItem(path.join(__dirname, "src", "preprompts")),
+  input: new workItem(basePath),
+  memory: new workItem(path.join(basePath, "memory")),
+  logs: new workItem(path.join(basePath, "logs")),
+  workspace: new workItem(path.join(basePath, "workspace")),
+  archive: new workItem(path.join(basePath, "archive")),
+};
 
 const ai = new Interaction();
 
-archive(db);
+(async function runCodeGeneration() {
+  for (const step of code_generation_steps) {
+    console.log(step.action_name);
+    const result = await step.action(ai, db);
 
-(async function () {
-  for (let stepName in workflow) {
-    console.log(stepName);
-    step = workflow[stepName];
-
-    result = await step(ai, db);
-
-    if (!result) continue;
-
-    serialized = serialize_message(result);
-
-    break;
-
-    db.logs.set(stepName, serialized);
+    if (!result) {
+      continue;
+    }
+ 
+    const serialized = serialize_message(result);
+    db.logs.set(step.action_name, serialized);
   }
 })();

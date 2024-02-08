@@ -1,6 +1,4 @@
 const { SystemMessage, HumanMessage, AIMessage } = require("langchain/schema");
-const { ConsoleCallbackHandler } = require("langchain/callbacks");
-
 const { ChatOpenAI } = require("langchain/chat_models/openai");
 
 class Interaction {
@@ -23,13 +21,10 @@ class Interaction {
     });
   }
 
-  init({ system_message = sys, user_message = hum, action_name = "test" }) {
-    const messages = [
-      new SystemMessage(system_message),
-      new HumanMessage(user_message),
-    ];
+  init({ system_message, user_message, action_name }) {
+    const messages = [new SystemMessage(system_message)];
 
-    return this.nextStep(messages, action_name);
+    return this.nextStep(messages, user_message, action_name);
   }
 
   fsystem(message) {
@@ -46,23 +41,18 @@ class Interaction {
   async nextStep(messages, user_input, action_name) {
     if (user_input) messages.push(new HumanMessage(user_input));
 
-    const calls = [
-     // for testing only
-     // new ConsoleCallbackHandler()
-    
-    ];
-
-    const response = await this.llm.call(messages, {
-     callbacks : calls
-    });
+    const response = await this.llm.call(messages);
 
     messages.push(response);
 
+    console.log("=== == = = == = == = = =");
+
+    console.log(action_name.toUpperCase());
+
+    console.log(messages[messages.length - 1].content);
+
     return messages;
   }
-
-
-
 }
 
 module.exports = Interaction;

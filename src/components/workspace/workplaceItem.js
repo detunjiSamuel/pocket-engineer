@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const { promisify } = require("util");
 
 // This class represents a simple database that stores its data as files in a directory.
 class Item {
