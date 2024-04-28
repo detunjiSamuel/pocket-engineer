@@ -1,13 +1,19 @@
 {
   "name": "pocker-engineer",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node index.js"
+    "test": "jest",
+    "start": "node index.js"
   },
-  "keywords": ["code generation" , "openai" , "gpt" , "llm" , "ai"],
+  "keywords": [
+    "code generation",
+    "openai",
+    "gpt",
+    "llm",
+    "ai"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -17,15 +23,16 @@
     "prompt-sync": "^4.2.0"
   },
   "overrides": {
-   "@langchain/core": "0.1.5"
- },
+    "@langchain/core": "0.1.5"
+  },
   "devDependencies": {
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "jest": "^29.7.0"
   },
   "engines": {
-   "node": "18.16.0"
- },
- "bin": {
-  "pocker-engineer": "./index.js"
-}
+    "node": "18.16.0"
+  },
+  "bin": {
+    "pocker-engineer": "./index.js"
+  }
 }
