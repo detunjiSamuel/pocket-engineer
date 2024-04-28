@@ -6,7 +6,7 @@ const { workItem, archive } = require("./src/components/workspace");
 const Interaction = require("./src/components/interaction");
 const { code_generation_steps } = require("./src/components/workflow");
 const {
-  serialize_message,
+ serializeMessage,
 } = require("./src/components/interaction/serialization");
 
 try {
@@ -45,11 +45,9 @@ const ai = new Interaction();
     console.log(step.action_name);
     const result = await step.action(ai, db);
 
-    if (!result) {
-      continue;
-    }
- 
-    const serialized = serialize_message(result);
+    if (!result) continue;
+
+    const serialized = serializeMessage(result);
     db.logs.set(step.action_name, serialized);
   }
 })();

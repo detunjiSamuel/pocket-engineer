@@ -1,16 +1,16 @@
-const { deserialize_message } = require("../interaction/serialization");
+const { deserializeMessage } = require("../interaction/serialization");
 const { toFiles } = require("./parser");
 
-function getPrompt(db) {
+const getPrompt = (db) => {
   if (!db.input.has("prompt")) {
     throw new Error(
       "Please put your prompt in the file 'prompt' in the project directory"
     );
   }
   return db.input.get("prompt");
-}
+};
 
-async function clarifyTask(ai, db) {
+const clarifyTask = async (ai, db) => {
   let messages = [ai.fsystem(db.preprompts.get("clarify"))];
   const user_input = await getPrompt(db);
 
@@ -27,21 +27,21 @@ async function clarifyTask(ai, db) {
   );
 
   return messages;
-}
+};
 
-function setupPrompts(db) {
+const setupPrompts = (db) => {
   return (
     db.preprompts.get("codeInstructions") +
     "\n you should also keep this in mind" +
     db.preprompts.get("codeStructure")
   );
-}
+};
 
-async function generateSpecification(ai, db) {
+const generateSpecification = async (ai, db) => {
   let messages = [
     ai.fsystem(setupPrompts(db)),
     ai.fsystem(db.preprompts.get("specification")),
-    ...deserialize_message(db.logs.get("clarifyTask")).slice(1),
+    ...deserializeMessage(db.logs.get("clarifyTask")).slice(1),
   ];
 
   messages = await ai.nextStep(
@@ -52,15 +52,15 @@ async function generateSpecification(ai, db) {
 
   db.memory.set("specification", messages[messages.length - 1].content.trim());
   return messages;
-}
+};
 
-async function generateCode(ai, db) {
-  let messages = deserialize_message(db.logs.get("clarifyTask"));
+const generateCode = async (ai, db) => {
+  let messages = deserializeMessage(db.logs.get("clarifyTask"));
 
   messages = [
     ai.fsystem(setupPrompts(db)),
     ...messages.slice(1),
-    ...deserialize_message(db.logs.get("generateSpecification")).slice(-1),
+    ...deserializeMessage(db.logs.get("generateSpecification")).slice(-1),
   ];
 
   messages = await ai.nextStep(
@@ -72,9 +72,9 @@ async function generateCode(ai, db) {
   toFiles(messages[messages.length - 1].content.trim(), db.workspace);
 
   return messages;
-}
+};
 
-async function generateStartupActions(ai, db) {
+const generateStartupActions = async (ai, db) => {
   const goals = [
     "You will get information about a codebase that is currently on disk in the current folder",
     "From this you will answer with code blocks that includes all the necessary to : ",
@@ -106,16 +106,16 @@ async function generateStartupActions(ai, db) {
   db.workspace.set("run.sh", content);
 
   return messages;
-}
+};
 
-function executeProgram() {
+const executeProgram = () => {
   console.log("You can now run execute the program created");
   console.log("run.sh is created in the workspace folder");
-}
+};
 
-function humanReview() {
+const humanReview = () => {
   console.log("Review the code if you want");
-}
+};
 
 const code_generation_steps = [
   { action_name: "clarifyTask", action: clarifyTask },

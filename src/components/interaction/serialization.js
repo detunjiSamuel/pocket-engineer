@@ -1,9 +1,6 @@
-
 const { SystemMessage, HumanMessage, AIMessage } = require("langchain/schema");
 
-
-
-function serialize_message(messages) {
+const serializeMessage = (messages) => {
   const serializedMessages = messages.map((message) => {
     if (message instanceof HumanMessage) {
       return { role: "user", content: message.content };
@@ -17,30 +14,23 @@ function serialize_message(messages) {
   });
 
   return JSON.stringify(serializedMessages);
-}
+};
 
+const deserializeMessage = (message) => {
+  data = JSON.parse(message);
 
+  const messages = data.map((serializedMessage) => {
+    if (serializedMessage.role === "user") {
+      return new HumanMessage(serializedMessage.content);
+    } else if (serializedMessage.role === "assistant") {
+      return new SystemMessage(serializedMessage.content);
+    } else return new AIMessage(serializedMessage.content);
+  });
 
-
-
-function deserialize_message(message)
-{
- data = JSON.parse(message)
-
- const messages = data.map((serializedMessage) => {
-  if (serializedMessage.role === "user") {
-    return new HumanMessage(serializedMessage.content);
-  } else if (serializedMessage.role === "assistant") {
-    return new SystemMessage(serializedMessage.content);
-  }
-  else return new AIMessage(serializedMessage.content);
-});
-
- return messages
-}
-
+  return messages;
+};
 
 module.exports = {
- serialize_message,
- deserialize_message
-}
+ serializeMessage,
+ deserializeMessage ,
+};

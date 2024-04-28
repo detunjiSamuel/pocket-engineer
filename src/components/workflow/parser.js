@@ -1,4 +1,4 @@
-function parseChat(chat) {
+const parseChat = (chat) => {
   const regex = /(\S+)\n\s*```\s*[^\n]*\n([\s\S]+?)```/g;
   const matches = [...chat.matchAll(regex)];
 
@@ -20,13 +20,12 @@ function parseChat(chat) {
   files.push(["README.md", readme]);
 
   return files;
-}
+};
 
-function toFiles(chat, workspace) {
+const toFiles = (chat, workspace) => {
   workspace.set("all_output.txt", chat);
 
   files = parseChat(chat);
-
 
   console.log(files.length);
 
@@ -35,13 +34,13 @@ function toFiles(chat, workspace) {
 
     console.log("=====================================");
 
-    console.log( "file name : " + file[0])
+    console.log("file name : " + file[0]);
 
-    console.log( "file content : " + file[1])
+    console.log("file content : " + file[1]);
 
     workspace.set(file[0], file[1]);
   }
-}
+};
 
 module.exports = {
   toFiles,
