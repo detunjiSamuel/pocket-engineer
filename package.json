@@ -1,11 +1,12 @@
 {
   "name": "pocker-engineer",
-  "version": "1.0.10",
-  "description": "",
+  "version": "1.1.0",
+  "description": "AI-powered code generation tool that transforms natural language prompts into complete codebases",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "node index.js"
+   "test": "jest",
+   "start": "node index.js",
+   "lint": "eslint ."
   },
   "keywords": [
     "code generation",
@@ -26,11 +27,15 @@
     "@langchain/core": "0.1.5"
   },
   "devDependencies": {
-    "dotenv": "^16.3.1",
-    "jest": "^29.7.0"
+   "dotenv": "^16.3.1",
+   "eslint": "^8.47.0",
+   "eslint-config-prettier": "^9.0.0",
+   "eslint-plugin-jest": "^27.2.3",
+   "eslint-plugin-node": "^11.1.0",
+   "jest": "^29.7.0"
   },
   "engines": {
-    "node": "18.16.0"
+    "node": ">=18.16.0"
   },
   "bin": {
     "pocker-engineer": "./index.js"
